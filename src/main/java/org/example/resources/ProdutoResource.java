@@ -25,10 +25,9 @@ public class ProdutoResource {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping
-    public Produto create(@RequestBody Produto produto){
-        return produtoService.insert(produto);
-    }
+   @PostMapping
+   public Produto create(@RequestBody Produto produto){return produtoService.insert(produto);}
+
 
     @PutMapping("/{id}")
     public  ResponseEntity<Produto> update(@PathVariable Long id, @RequestBody Produto produto){
@@ -47,6 +46,6 @@ public class ProdutoResource {
                     produtoService.deleteID(id);
                     return ResponseEntity.noContent().build();
                 })
-                .orElse(ResponseEntity.notFound().build()); 
+                .orElse(ResponseEntity.notFound().build());
     }
 }

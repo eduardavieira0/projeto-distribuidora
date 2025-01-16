@@ -6,8 +6,13 @@ import javax.persistence.*;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_FORNECEDOR")
+    @Column(name = "ID_PRODUTO")
     private Long idProduto;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_FORNECEDOR", nullable = false)
+    private Fornecedor fornecedor;
+
 
     @Column(name = "NOME")
     private String nome;
@@ -17,8 +22,9 @@ public class Produto {
 
     public Produto() {
     }
-    public Produto(Long idProduto, String nome, Double preco) {
+    public Produto(Long idProduto, Fornecedor fornecedor, String nome, Double preco) {
         this.idProduto = idProduto;
+        this.fornecedor = fornecedor;
         this.nome = nome;
         this.preco = preco;
     }
@@ -30,6 +36,10 @@ public class Produto {
     public void setIdProduto(Long idProduto) {
         this.idProduto = idProduto;
     }
+
+    public Fornecedor getFornecedor() {return fornecedor;}
+
+    public void setFornecedor(Fornecedor fornecedor) {this.fornecedor = fornecedor;}
 
     public String getNome() {
         return nome;
